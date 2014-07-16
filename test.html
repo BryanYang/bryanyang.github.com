@@ -1,0 +1,14 @@
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+	var html ='';
+		$.getJSON('http://localhost/1.json',function(data){
+		  $.each(data,function(i,t){
+		  	$('body').append('<p>'+ t.name+'</p>')
+		  })
+		})
+	})
+</script>
+
+<body></body>
