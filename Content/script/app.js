@@ -7,7 +7,8 @@ omoApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/products', {
-        templateUrl: 'partials/productsList.html',
+        //templateUrl: 'partials/productsList.html',
+        templateUrl: 'partials/index.html',
         controller: 'ProductListCtrl'
       }).
       when('/products/:pid', {
