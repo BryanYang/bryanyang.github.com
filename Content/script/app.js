@@ -51,6 +51,10 @@ omoApp.config(['$routeProvider',
         templateUrl: 'partials/recommend9.html',
         controller: 'ProductDetailCtrl'
       }).
+      when('/allmall',{
+        templateUrl: 'partials/shangjiadaohang.html',
+        controller: 'ProductDetailCtrl'
+      }).
       otherwise({
         redirectTo: '/products'
       });
