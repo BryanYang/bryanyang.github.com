@@ -4,12 +4,17 @@
 <div class="overall">   
    
     <div class="compare">
-        <input value="输入商品关键词搜索比价" type="text" id="compareValue" class="compare-search" onfocus="if(this.value=='输入商品关键词搜索比价'){this.value=''}" />
-        <a type="button" href="#/searchResult" value="搜索比价"  id="compareId" class="compare-button" />
+        <input value="输入商品关键词搜索比价" type="text" id="compareValue" class="compare-search" style="width=300px;" onfocus="if(this.value=='输入商品关键词搜索比价'){this.value=''}" />
+        <input type="button" href="#/searchResult" value="搜索比价"  id="compareId" class="compare-button" />
         
     </div>
     <div class="hotcompare"><b>提示：</b><span>目前数据仅收录少量衣服，商用时将收录更多 :-)</span></div>
     <div style="margin-top: 230px;">
     </div>
 </div>
-<script src="/Content/script/compare.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $('#compareId').click(function(){
+     window.location.replace('http://bryanyang.github.io/#/searchResult');
+  })
+</script>
