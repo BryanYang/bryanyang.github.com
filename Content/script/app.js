@@ -55,6 +55,14 @@ omoApp.config(['$routeProvider',
         templateUrl: 'partials/shangjiadaohang.html',
         controller: 'ProductDetailCtrl'
       }).
+      when('/bijia',{
+        templateUrl: 'partials/bijia.html',
+        controller: 'ProductDetailCtrl'
+      }).
+      when('/searchResult',{
+        templateUrl: 'partials/searchResult.html',
+        controller: 'ProductDetailCtrl'
+      }).
       otherwise({
         redirectTo: '/products'
       });
