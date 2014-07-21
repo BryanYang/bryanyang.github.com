@@ -1,6 +1,6 @@
 (function () {
     $backToTopEle = $('<div class="backToTop"></div>').appendTo($("body"))
-        .html("<img src='Content/Images/gotop.jpg' id='goTop' title='返回顶部' /><a href='http://www.yifen.com/weixin.html' target='_blank'><img src='Content/Images/wx_btn.jpg' title='关注一分网微信' style='margin-top:10px' /></a>");
+        .html("<img src='http://www.yifen.com/Content/Images/gotop.jpg' id='goTop' title='返回顶部' /><a href='#' target='_blank'><img src='http://www.yifen.com/Content/Images/wx_btn.jpg' title='关注一分网微信' style='margin-top:10px' /></a>");
     $("#goTop").click(function () {
         $("html, body").animate({ scrollTop: 0 }, 120);
         $(".promotionforday").css("position", "static");
