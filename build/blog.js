@@ -37,6 +37,9 @@ var Line = React.createClass({displayName: "Line",
 var Article = React.createClass({displayName: "Article",
     render: function() {
         var lines = this.props.lines;
+        var author= this.props.author;
+        var date = this.props.date;
+        lines.splice(1,0,'**'+author+'**'+'  *'+ date+'*');
         var html = lines.map(function(line){
             return (React.createElement(Line, {line: line}))
         })
@@ -47,4 +50,3 @@ var Article = React.createClass({displayName: "Article",
           ));
     }
 });
-

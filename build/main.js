@@ -1,11 +1,11 @@
 
 
-var ExampleApplication = React.createClass({
+var ExampleApplication = React.createClass({displayName: "ExampleApplication",
     render: function() {
         var elapsed = Math.round(this.props.elapsed / 100);
         var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0');
         var message =
-           <h1> 'React has been successfully running for ' + seconds + ' seconds.'</h1>;
+           React.createElement("h1", null, " 'React has been successfully running for ' + seconds + ' seconds.'");
 
         return React.DOM.p(null, message);
     }
@@ -14,7 +14,7 @@ var ExampleApplication = React.createClass({
 // Call React.createFactory instead of directly call ExampleApplication({...}) in React.render
 var ExampleApplicationFactory = React.createFactory(ExampleApplication);
 
-var Counter = React.createClass({
+var Counter = React.createClass({displayName: "Counter",
         getInitialState: function () {
           return { clickCount: 0 };
         },
@@ -25,7 +25,7 @@ var Counter = React.createClass({
           });
         },
         render: function () {
-          return (<h2 onClick={this.handleClick}>Click me! Number of clicks: {this.state.clickCount}</h2>);
+          return (React.createElement("h2", {onClick: this.handleClick}, "Click me! Number of clicks: ", this.state.clickCount));
         }
   });
 /*
@@ -38,7 +38,7 @@ function aa(){
   alert(1)
 }
 
-var Buttons = React.createClass({
+var Buttons = React.createClass({displayName: "Buttons",
 		    getInitialState: function () {
           return { zhuangtai: 'VIEW' };
         },
@@ -67,25 +67,25 @@ var Buttons = React.createClass({
         	}
 
         
-          	return (<div >
-          				<h1>Hi:</h1>
-          				<h2 className="commentAuthor">
-				          {this.props.author}
-				        </h2>
-				        {this.props.children}
-          			{
+          	return (React.createElement("div", null, 
+          				React.createElement("h1", null, "Hi:"), 
+          				React.createElement("h2", {className: "commentAuthor"}, 
+				          this.props.author
+				        ), 
+				        this.props.children, 
+          			
                   buttons.map(function(b){
                   return(
-                    <input type='button' value={b} onClick={this.handleClick.bind(this)} />)}
+                    React.createElement("input", {type: "button", value: b, onClick: this.handleClick.bind(this)}))}
                   ,this)
-                }
-          			</div>);
+                
+          			));
         }
 })
 
 
 React.render(
-<Buttons author="yanggaofei" />,
+React.createElement(Buttons, {author: "yanggaofei"}),
 document.getElementById('message')
 );
 

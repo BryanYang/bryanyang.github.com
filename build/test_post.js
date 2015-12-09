@@ -19,3 +19,4 @@ React.render(
     React.createElement(Article, {author: "yanggaofei", lines: lines}),
     document.getElementById('article')
 );
+
