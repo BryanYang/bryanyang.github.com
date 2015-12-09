@@ -9,7 +9,7 @@ body {
 .bs-docs-section > p, .bs-docs-section > ul, 
 .bs-docs-section > ol, .bs-callout > p, 
 .bs-callout > ol, .bs-callout > ul {
-	font-size: 16px;
+	font: 19px/1.4 Arial,Helvetica,'Hiragino Sans GB','Microsoft YaHei',sans-serif;
 	line-height: 1.75;
 	margin-bottom: 1em;
 }
