@@ -1,17 +1,18 @@
 var Line = React.createClass({displayName: "Line",
     render: function() {
         var l = this.props.line;
-        var ul_begin = false;
+        l = l.replace(/\t/g,'    ');
         //l = l.replace(/.+</g,'&lt;').replace(/.+>/g,'&gt;');
-        l = l.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-        l = l.replace(/\*(.+?)\*/g,'<em>$1</em>');
-        l = l.replace(/!\[.+?\]\((.+?)\)/g,'<img src="$1" class="img-thumbnail"/>');
-        l = l.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
-        l = l.replace(/```([^`]+?)```/g,'<pre>$1</pre>');
-        l = l.replace(/`(.+?)`/g,'<code>$1</code>');
-        l = l.replace(/<pre>(.*?)<\/pre>/g,function(p){
-          return '<pre>'+RegExp.$1.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</pre>';
-        });
+        if(!/```([^`]+?)```/.test(l)){
+            l = l.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+            l = l.replace(/\*(.+?)\*/g,'<em>$1</em>');
+            l = l.replace(/!\[.+?\]\((.+?)\)/g,'<img src="$1" class="img-thumbnail" style="margin-right:50px;float:left"/>');
+            l = l.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+            l = l.replace(/`(.+?)`/g,'<code>$1</code>');
+        }
+        
+     
+
         l = l.replace(/<code>(.*?)<\/code>/g,function(p){
           return '<code>'+RegExp.$1.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</code>';
         });
@@ -25,10 +26,12 @@ var Line = React.createClass({displayName: "Line",
           return(React.createElement("blockquote", {dangerouslySetInnerHTML: {__html: RegExp.$1}}))
         }else if(/^\*\s(.*)/.test(l)){
             return(React.createElement("li", {dangerouslySetInnerHTML: {__html: RegExp.$1}}))
+        }else if(/```([^`]+?)```/.test(l)){
+          return (React.createElement("pre", {className: "prettyprint linenums Lang-js", dangerouslySetInnerHTML: {__html:RegExp.$1.replace(/</g,'&lt;').replace(/>/g,'&gt;')}}));
         }
 
         else return(
-          React.createElement("div", {className: "bs-docs-section", dangerouslySetInnerHTML: {__html:'<p>' +l+'</p>'}}
+          React.createElement("div", {className: "bs-docs-section", dangerouslySetInnerHTML: {__html:'<p>' +l+'<p>'}}
       
           ));
     }
