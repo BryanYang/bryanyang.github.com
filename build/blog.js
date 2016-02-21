@@ -1,4 +1,16 @@
 var Line = React.createClass({displayName: "Line",
+   getInitialState: function() {
+    return {windowWidth: window.innerWidth};
+  },
+     componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  handleResize: function(e) {
+    this.setState({windowWidth: window.innerWidth});
+  },
+
+
     render: function() {
         var l = this.props.line;
         l = l.replace(/\t/g,'    ');
@@ -20,6 +32,9 @@ var Line = React.createClass({displayName: "Line",
           return (React.createElement("h1", {className: "page-header", dangerouslySetInnerHTML: {__html: RegExp.$1}}))
         }else if(/^##\s(.*)/.test(l)){
           return (React.createElement("h2", {dangerouslySetInnerHTML: {__html: RegExp.$1}}))
+        }
+        else if(/^###\s(.*)/.test(l)){
+          return (React.createElement("h3", {dangerouslySetInnerHTML: {__html: RegExp.$1}}))
         }else if(/^----/.test(l)){
           return(React.createElement("div", {className: "border"}))
         }else if(/^>\s(.*)/.test(l)){
@@ -28,9 +43,16 @@ var Line = React.createClass({displayName: "Line",
             return(React.createElement("li", {dangerouslySetInnerHTML: {__html: RegExp.$1}}))
         }else if(/```([^`]+?)```/.test(l)){
           return (React.createElement("pre", {className: "prettyprint linenums Lang-js", dangerouslySetInnerHTML: {__html:RegExp.$1.replace(/</g,'&lt;').replace(/>/g,'&gt;')}}));
-        }
-
-        else return(
+        }else if(/^\|\s(.*)/.test(l)){
+            if(this.state.windowWidth>600){
+              return(React.createElement("table", {className: "table table-bordered", dangerouslySetInnerHTML: {__html: RegExp.$1}}))
+            }else{
+              var h = RegExp.$1.replace(/<tr>/g,'<div class="row">').replace(/<\/tr>/g,'</div>').replace(/<td>/g,'<div class="col-xs-6">').replace(/<\/td>/g,'</div>');
+              console.log(h);
+              return(React.createElement("div", {dangerouslySetInnerHTML: {__html: h}}))
+            }
+          
+        }else return(
           React.createElement("div", {className: "bs-docs-section", dangerouslySetInnerHTML: {__html:'<p>' +l+'<p>'}}
       
           ));
@@ -48,7 +70,7 @@ var Article = React.createClass({displayName: "Article",
         })
 
         return (
-          React.createElement("div", {className: "container"}, 
+          React.createElement("div", {className: ""}, 
           html
           ));
     }
