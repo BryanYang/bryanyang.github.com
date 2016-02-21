@@ -1,0 +1,14 @@
+[
+  "## 获取bing中国的壁纸",
+  "bing 壁纸很好看，每天下载下来当桌面还是不错的，其实抓取图片方法很简单，但是图片url还是得下一番功夫去查的。花点时间，还是找到了必应中国的高清壁纸(1980*1080)地址，下面是nodejs抓取图片的代码：",
+  "```/*\n下载bing中国壁纸到本目录下\n分辨率为1980*1080，可设置\n*/\n \n \nvar http = require('http');\nvar fs = require('fs');\n \n \nvar options = {\n    hostname: 'cn.bing.com',\n    port: 80,\n    path: '/HPImageArchive.aspx?idx=0&n=1',\n    method: 'GET'\n};\n \nvar req = http.request(options, function(res) {\n    var reg = new RegExp(\"<url>/az/hprichbg/rb/(.*)_1366x768.jpg</url>\");\n    var body = '';\n    res.on('data', function(chunk) {\n        body += chunk;\n \n    }).on('end', function() {\n        reg.test(body);\n        var img = RegExp.$1;\n        console.log(img);\n        writestream = fs.createWriteStream(img + \"_1920x1080.jpg\");\n        http.get('http://s.cn.bing.net/az/hprichbg/rb/' + img + \"_1920x1080.jpg\", function(res) {\n            res.pipe(writestream);\n        })\n        writestream.on('finish', function() {\n            console.log('done');\n        });\n    })\n \n    res.on('error', function(e) {\n        console.log(e.message);\n    })\n \n});\n \nreq.end();\n```",
+  "(⊙o⊙)…，代码好少。不过拿到壁纸就行了。",
+  "运行：`node bingBest.js` 结果:",
+  "> GlowWorms_ZH-CN10708592012 done",
+  "然后就能看到在当前目录下，**GlowWorms_ZH-CN10708592012_1920x1080.jpg** (文件名根据当前壁纸名而定)",
+  "接下来，还可以做一些事情：",
+  "",
+  "对于win用户，可以用c#写个程序，将该壁纸设置为系统桌面，调用windows api接口即可，然后写一个计划任务，每天定时执行bat脚本，脚本做2件事，1：node 运行上述脚本下载壁纸，2，调用c#程序设置壁纸。",
+  "",
+  "本人不在win下工作了，所以c#程序不写了 ：）"
+]

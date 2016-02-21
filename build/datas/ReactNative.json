@@ -1,0 +1,18 @@
+[
+  "## NativeScript 开发原生APP",
+  "最近在学习使用Native Script，官方查看详细信息: native script ;一般按着它的文档很容易部署好开发环境，过称中有几个问题这里说一下。安装 安卓 sdk 的时候， 要增加国内代理，这样速度快，关于代理，网上有很多，我用的那个速度不是很快，就不推荐了。在MAC上用真机调试的时候，安卓默认是安不上的。此时，安装",
+  "",
+  "### 第一步： 查看usb设备信息",
+  "在 终端输入：`system_profiler SPUSBDataType`     可以查看连接的usb设备的信息比如我的usb信息如下（部分内容）：",
+  "Spreadtrum phone:",
+  "```              Product ID: 0x5d04\n              Vendor ID: 0x1782\n              Version:  2.29\n              Serial Number: 19761202\n              Speed: Up to 480 Mb/sec\n              Manufacturer: Spreadtrum\n              Location ID: 0xfa120000 / 6\n              Current Available (mA): 500\n              Current Required (mA): 500\n```",
+  "查看到我的android手机的Vendor ID: 0x1782，记住这个id",
+  "### 第二步： 创建、修改adb_usb.ini文件",
+  "输入： `vi ~/.android/adb_usb.ini` 命令，在打开的 **adb_usb.ini**文件中添加`0x1782`， 然后保存退出或者使用其他的文本编辑器去进行修改都可以的（注：请保证ini里面没有空行，否则会有错误 ADB server didn't ack）注意：第一次添加时，adb_usb.ini文件并没有，需要自己创建一个，输入内容后保存就好了,对应的路径如下：`/Users/你的用户/.android/adb_usb.ini`",
+  "备注：.android目录是隐藏的，需要开启隐藏目录显示。命令行输入显示Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles -bool true`(隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles -bool false  )输完单击Enter键，退出终端，重新启动Finder就可以了  重启Finder：鼠标单击窗口左上角的苹果标志-->强制退出-->Finder-->重新启动",
+  "### 第三步：重启adb  ,找到adb这个命令,",
+  "```adb kill-server\nadb start-server\nadb devices\n```",
+  "就可以看到列表了！",
+  "### 第四部：进入DDMS，已经可以找到的我的android手机了，开始调试吧！",
+  "有时 adb devices不能显示连接设备，需要拔掉数据线，多插几次，并且退出终端，然后重新打开，再输入命令就能发现连接的设备。运行 `tns run android` ，然后就可以看到 native script 生成的app.继续摸索中。有情况再跟大家分享。"
+]
