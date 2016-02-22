@@ -4,7 +4,7 @@
   "```/*\n下载bing中国壁纸到本目录下\n分辨率为1980*1080，可设置\n*/\n \n \nvar http = require('http');\nvar fs = require('fs');\n \n \nvar options = {\n    hostname: 'cn.bing.com',\n    port: 80,\n    path: '/HPImageArchive.aspx?idx=0&n=1',\n    method: 'GET'\n};\n \nvar req = http.request(options, function(res) {\n    var reg = new RegExp(\"<url>/az/hprichbg/rb/(.*)_1366x768.jpg</url>\");\n    var body = '';\n    res.on('data', function(chunk) {\n        body += chunk;\n \n    }).on('end', function() {\n        reg.test(body);\n        var img = RegExp.$1;\n        console.log(img);\n        writestream = fs.createWriteStream(img + \"_1920x1080.jpg\");\n        http.get('http://s.cn.bing.net/az/hprichbg/rb/' + img + \"_1920x1080.jpg\", function(res) {\n            res.pipe(writestream);\n        })\n        writestream.on('finish', function() {\n            console.log('done');\n        });\n    })\n \n    res.on('error', function(e) {\n        console.log(e.message);\n    })\n \n});\n \nreq.end();\n```",
   "(⊙o⊙)…，代码好少。不过拿到壁纸就行了。",
   "运行：`node bingBest.js` 结果:",
-  "> GlowWorms_ZH-CN10708592012 done",
+  "``GlowWorms_ZH-CN10708592012\ndone\n``",
   "然后就能看到在当前目录下，**GlowWorms_ZH-CN10708592012_1920x1080.jpg** (文件名根据当前壁纸名而定)",
   "接下来，还可以做一些事情：",
   "",
