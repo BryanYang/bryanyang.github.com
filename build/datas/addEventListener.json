@@ -1,0 +1,20 @@
+[
+  "## addEventListener 的三个参数",
+  "",
+  "addEventListener 有三个参数：第一个参数表示事件名称（不含 on，如 \"click\"）；第二个参数表示要接收事件处理的函数；第三个参数为 `useCapture`，本文就讲解它。",
+  "```<div id=\"outDiv\">\n  <div id=\"middleDiv\">\n    <div id=\"inDiv\">请在此点击鼠标。</div>\n  </div>\n</div>\n \n<div id=\"info\"></div>\n  \nvar outDiv = document.getElementById(\"outDiv\");\nvar middleDiv = document.getElementById(\"middleDiv\");\nvar inDiv = document.getElementById(\"inDiv\");\nvar info = document.getElementById(\"info\");\n  \noutDiv.addEventListener(\"click\", function () { info.innerHTML += \"outDiv\" + \"<br>\"; }, false);\nmiddleDiv.addEventListener(\"click\", function () { info.innerHTML += \"middleDiv\" + \"<br>\"; }, false);\ninDiv.addEventListener(\"click\", function () { info.innerHTML += \"inDiv\" + \"<br>\"; }, false);\n\n```",
+  "上述是我们测试的代码，根据 `info` 的显示来确定触发的顺序，有三个 addEventListener，而 useCapture 可选值为 `true` 和 `false`，所以 2*2*2，可以得出 8 段不同的程序。",
+  "",
+  "* 全为 false 时，触发顺序为：inDiv、middleDiv、outDiv;",
+  "* 全为 true 时，触发顺序为：outDiv、middleDiv、inDiv;",
+  "* outDiv 为 true，其他为 false 时，触发顺序为：outDiv、inDiv、middleDiv;",
+  "* middleDiv 为 true，其他为 false 时，触发顺序为：middleDiv、inDiv、outDiv;",
+  "* ……",
+  "",
+  "",
+  "最终得出如下结论：",
+  "* true 的触发顺序总是在 false 之前；",
+  "* 如果多个均为 true，则外层的触发先于内层；",
+  "* 如果多个均为 false，则内层的触发先于外层。",
+  ""
+]

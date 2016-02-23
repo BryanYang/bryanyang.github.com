@@ -7,7 +7,7 @@
   "1. 首先打开 windows 画图板，手绘一个图形bg.jpg,歪歪扭扭就ok了：",
   "![img](http://static.oschina.net/uploads/space/2015/0330/111035_P1mu_867090.jpg)",
   "",
-  "2. 指定样式，这里用到 css 的 `border-img` .指定拉伸`stretch`。",
+  "2. 指定样式，这里用到 css 的 `border-img` .指定拉伸 `stretch`。",
   "``` <style type=\"text/css\">\n    div {\n        -moz-border-image: url(border.png) 30 30 stretch;\n        /* Old Firefox */\n         \n        -webkit-border-image: url(bg.jpg) 10 10 stretch;\n        /* Safari and Chrome */\n         \n        -o-border-image: url(bg.png) 20 30 stretch;\n        /* Opera */\n         \n        border-image: url(bg.jpg) 10 10 stretch;\n    }\n    </style>\n```",
   "拉伸之后效果就变成下图了。",
   "这是一个截图，我想做做种样式的div.",
@@ -16,7 +16,7 @@
   "",
   "-------",
   "```l.replace(/<code>(.*?)<\\/code>/g,function(p,t){return '<code>'+t+'</code>'})\n```",
-  "string的replace，p是匹配到(<code>xxx</code>)，t是捕获(xx);",
-  "return 返回将替换整个匹配的(<code>(.*?)</code>)",
+  "string的replace，p是匹配到(`<code>xxx</code>`)，t是捕获(xx);",
+  "return 返回将替换整个匹配的(`<code>(.*?)</code>`)",
   ""
 ]
